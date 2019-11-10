@@ -1,0 +1,22 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "Cli application that simulates the online shopping store.",
+  "main": "bamazon.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anicng/bamazon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anicng/bamazon/issues"
+  },
+  "homepage": "https://github.com/anicng/bamazon#readme",
+  "dependencies": {
+    "mysql": "^2.17.1"
+  }
+}
