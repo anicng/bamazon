@@ -48,19 +48,18 @@ function promptPurchaseQuestions() {
             message: "How many you would like to purchase?"
         }
     ]).then(function (answer) {
-        console.log(answer.select_item);
-        console.log(answer.quantity);
+        // console.log(answer.select_item);
+        // console.log(answer.quantity);
         var query = "SELECT * FROM products WHERE item_id = ?";
         connection.query(query, [answer.select_item], function (err, res) {
             if (err) throw err;
             // console.log(res);
-            if (res[0].stock_quantity <= 0) {
-                console.log("Sorry, insufficient quantity!");
+            if (res[0].stock_quantity < answer.quantity) {
+                console.log(
+                    "Sorry, insufficient quantity!" +
+                    "\nStock quantity: " + res[0].stock_quantity);
             }
-            console.log("Stock quantity: " + res[0].stock_quantity);
 
         });
-
-
     })
 };
