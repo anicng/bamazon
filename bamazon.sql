@@ -14,3 +14,5 @@ CREATE TABLE products (
 );
 
 SELECT * FROM products;
+
+INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ("eggs", "grocery", 2.99, 0);

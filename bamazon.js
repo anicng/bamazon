@@ -1,1 +1,66 @@
-var mysql = require ('mysql');
+var mysql = require('mysql');
+var inquirer = require('inquirer');
+
+// Create connection for mysql
+var connection = mysql.createConnection({
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: '',
+    database: 'bamazon'
+})
+
+connection.connect(function (err) {
+    if (err) throw err;
+    console.log("connection success! id " + connection.threadId);
+    displayAllItems();
+});
+
+// Display Product ID, Product Name, Price from bamazon.products
+function displayAllItems() {
+    connection.query("SELECT * FROM products", function (err, res) {
+        if (err) throw err;
+        console.log("+----------Product List----------+");
+        for (var i = 0; i < res.length; i++) {
+            console.log(
+                "\n" +
+                "Product ID: " + res[i].item_id +
+                "\nProduct Name: " + res[i].product_name +
+                "\nPrice: " + res[i].price
+            );
+        }
+        // console.log(res);
+        // connection.end();
+        promptPurchaseQuestions();
+    });
+};
+
+// Prompt to ask what product id and quantity user wants to purchase
+function promptPurchaseQuestions() {
+    inquirer.prompt([{
+            name: "select_item",
+            type: "input",
+            message: "Input the Product ID you would like to purchase."
+        },
+        {
+            name: "quantity",
+            type: "input",
+            message: "How many you would like to purchase?"
+        }
+    ]).then(function (answer) {
+        console.log(answer.select_item);
+        console.log(answer.quantity);
+        var query = "SELECT * FROM products WHERE item_id = ?";
+        connection.query(query, [answer.select_item], function (err, res) {
+            if (err) throw err;
+            // console.log(res);
+            if (res[0].stock_quantity <= 0) {
+                console.log("Sorry, insufficient quantity!");
+            }
+            console.log("Stock quantity: " + res[0].stock_quantity);
+
+        });
+
+
+    })
+};
