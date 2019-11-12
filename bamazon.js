@@ -83,8 +83,9 @@ function updateStockQty(newQty, selectID, productName, purchaseQuantity) {
         function (error) {
             if (error) throw error;
             console.log("Successfully purchased " + purchaseQuantity + " " + productName + " !");
-            console.log("New Qty: " + newQty);
+            console.log("Current " + productName + " quantity: " + newQty);
             // console.log("Product: " + productName)
+            promptPurchaseQuestions();
         }
     );
 
