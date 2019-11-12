@@ -6,7 +6,7 @@ var connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: '',
+    password: 'Any!98105',
     database: 'bamazon'
 })
 
@@ -51,15 +51,41 @@ function promptPurchaseQuestions() {
         // console.log(answer.select_item);
         // console.log(answer.quantity);
         var query = "SELECT * FROM products WHERE item_id = ?";
-        connection.query(query, [answer.select_item], function (err, res) {
+        connection.query(query, [answer.select_item], function qtyCheckAndUpdate(err, res) {
             if (err) throw err;
             // console.log(res);
             if (res[0].stock_quantity < answer.quantity) {
                 console.log(
-                    "Sorry, insufficient quantity!" +
+                    "Sorry, insufficient quantity of " + res[0].product_name + " !" +
                     "\nStock quantity: " + res[0].stock_quantity);
+            } else {
+                var purchaseQuantity = answer.quantity;
+                var newStock = res[0].stock_quantity - answer.quantity;
+                var id = answer.select_item;
+                var itemName = res[0].product_name;
+                updateStockQty(newStock, id, itemName, purchaseQuantity);
             }
 
         });
     })
+};
+
+function updateStockQty(newQty, selectID, productName, purchaseQuantity) {
+    connection.query(
+        "UPDATE products SET ? WHERE ?",
+        [{
+                stock_quantity: newQty
+            },
+            {
+                item_id: selectID
+            }
+        ],
+        function (error) {
+            if (error) throw error;
+            console.log("Successfully purchased " + purchaseQuantity + " " + productName + " !");
+            console.log("New Qty: " + newQty);
+            // console.log("Product: " + productName)
+        }
+    );
+
 };
