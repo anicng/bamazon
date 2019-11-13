@@ -15,14 +15,14 @@ Initial Data (import from CSV file)
 <img width="420" alt="Screen Shot 2019-11-11 at 10 37 02 PM" src="https://user-images.githubusercontent.com/52692899/68735158-a1baeb80-0591-11ea-97c0-79472b55f13e.png">
 
 ## Display Items
-* When running the application, it will check for connection to database.
+When running the application, it will check for connection to database.
 If success, you will see the message 
  `connection success! id + threadID`
 
-* It will then display all the products on bamazon and how much each item costs.
+It will then display all the products on bamazon and how much each item costs.
 ![display](https://user-images.githubusercontent.com/52692899/68732819-a24f8400-0589-11ea-99e7-c150ce1d62ec.gif)
 
- * The app then prompts question asking user which item they would like to purchase and how many they want to purchase.
+The app then prompts question asking user which item they would like to purchase and how many they want to purchase.
  
 
 ## Insufficient Quantity
