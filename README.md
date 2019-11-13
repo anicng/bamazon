@@ -4,6 +4,16 @@ Cli application that simulates the online shopping store.
 > Using Node.js + mysql module to interact with database and inquirer module to display prompt for users.
 > Prompt shown using inquirer module, type as "input", getting the user answer for selected product ID and purchase quantity. User answers are then handled in the .then function, which is later on used to query database for product stock quantity, product name, see if the quantity is sufficient and update stock quantity in the database.
 
+## Database
+
+Database Schema
+
+<img width="961" alt="Screen Shot 2019-11-11 at 10 37 20 PM" src="https://user-images.githubusercontent.com/52692899/68735167-a7183600-0591-11ea-86bb-8ed417f78a14.png">
+
+Initial Data (import from CSV file)
+
+<img width="420" alt="Screen Shot 2019-11-11 at 10 37 02 PM" src="https://user-images.githubusercontent.com/52692899/68735158-a1baeb80-0591-11ea-97c0-79472b55f13e.png">
+
 ## Display Items
 * When running the application, it will check for connection to database.
 If success, you will see the message 
